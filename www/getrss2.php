@@ -77,12 +77,17 @@ __HEREDOC__;
       continue;
     }
     $thumbnail = 'https:' . $matches[1];
+    
+    if (preg_match($words['208'], $one_record, $matches) == 0) {
+      continue;
+    }
+    $title = $matches[1];
    
     if (preg_match('/<a .+? title="(.+?)"/', $one_record, $matches) == 0) {
       continue;
     }
-    $title = htmlspecialchars($matches[1]);
-    
+    $title .= ' ' . htmlspecialchars($matches[1]);
+   
     $statement_select->execute(
       [
         ':b_thumbnail' => $thumbnail,
