@@ -164,7 +164,7 @@ for($i = 0; $i < $per_count; $i++) {
 $urls[] = $url . '?c=' . $count . '&u=' . $url;
 
 $mh = curl_multi_init();
-curl_multi_setopt($mh, CURLMOPT_PIPELINING, 3);
+//curl_multi_setopt($mh, CURLMOPT_PIPELINING, 3);
 
 foreach($urls as $url) {
   error_log("${pid} ${url}");
@@ -172,7 +172,7 @@ foreach($urls as $url) {
   curl_setopt_array($ch, array(
     CURLOPT_URL => $url,
     CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:57.0) Gecko/20100101 Firefox/58.0'
+    CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:57.0) Gecko/20100101 Firefox/61.0'
     ));
   curl_multi_add_handle($mh, $ch);
 }
