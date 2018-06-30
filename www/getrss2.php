@@ -164,6 +164,7 @@ for($i = 0; $i < $per_count; $i++) {
 $urls[] = $url . '?c=' . $count . '&u=' . $url;
 
 $mh = curl_multi_init();
+curl_multi_setopt($mh, CURLMOPT_PIPELINING, true);
 
 foreach($urls as $url) {
   error_log("${pid} ${url}");
