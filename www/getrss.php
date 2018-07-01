@@ -140,6 +140,7 @@ for($i = 0; $i < $per_count; $i++) {
 $urls[] = $url . '?c=' . $count . '&u=' . $url;
 
 $mh = curl_multi_init();
+curl_multi_setopt($mh, CURLMOPT_PIPELINING, 3);
 
 foreach($urls as $url) {
   $ch = curl_init();
