@@ -30,6 +30,10 @@ function f_parse($html_, $host_, $page_) {
     "pgsql:host=${connection_info['host']};dbname=" . substr($connection_info['path'], 1),
     $connection_info['user'],
     $connection_info['pass']);
+  $pdo2 = new PDO(
+    "pgsql:host=${connection_info['host']};dbname=" . substr($connection_info['path'], 1),
+    $connection_info['user'],
+    $connection_info['pass']);
     
   $sql = <<< __HEREDOC__
 SELECT M1.type
@@ -58,7 +62,7 @@ SELECT thumbnail_hash
   FROM t_file_hash
  WHERE thumbnail = :b_thumbnail
 __HEREDOC__;
-  $statement_select = $pdo->prepare($sql);
+  $statement_select = $pdo2->prepare($sql);
 
   $sql = <<< __HEREDOC__
 INSERT INTO t_file_hash
@@ -164,6 +168,7 @@ __HEREDOC__;
   }
   
   $pdo = null;
+  $pdo2 = null;
   
   return;
 }
