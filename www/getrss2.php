@@ -65,7 +65,6 @@ __HEREDOC__;
       case strpos($one_record, $words['207']) === false:
       case strpos($one_record, $words['206']) !== false:
         continue 2;
-        break;
     }   
    
     if (preg_match($words['205'], $one_record, $matches) == 0) {
