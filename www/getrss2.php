@@ -47,6 +47,7 @@ __HEREDOC__;
 
   foreach(explode($words['203'], $buf) as $one_record) {
 
+    /*
     if (strpos($one_record, $words['204']) === false) {
       continue;
     }
@@ -58,7 +59,15 @@ __HEREDOC__;
     if (strpos($one_record, $words['206']) !== false) {
       continue;
     }
-    
+    */    
+    switch (true) {
+      case strpos($one_record, $words['204']) === false:
+      case strpos($one_record, $words['207']) === false:
+      case strpos($one_record, $words['206']) !== false:
+        continue 2;
+        break;
+    }   
+   
     if (preg_match($words['205'], $one_record, $matches) == 0) {
       continue;
     }
