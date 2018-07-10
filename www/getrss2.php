@@ -76,6 +76,7 @@ __HEREDOC__;
       continue;
     }
     
+    /*
     if (preg_match('/<a href="(.+?)"/', $one_record, $matches) == 0) {
       continue;
     }
@@ -95,6 +96,19 @@ __HEREDOC__;
       continue;
     }
     $title .= ' ' . htmlspecialchars($matches[1]);
+    */
+    
+    switch (true) {
+      case preg_match('/<a href="(.+?)"/', $one_record, $matches1) == 0:
+      case preg_match('/<img src="(.+?)"/', $one_record, $matches2) == 0:
+      case preg_match($words['208'], $one_record, $matches3) == 0:
+      case preg_match('/<a .+? title="(.+?)"/', $one_record, $matches4) == 0:
+        continue 2;
+    }
+    $href = $matches1[1];
+    $thumbnail = 'https:' . $matches2[1];
+    $title = $matches3[1];
+    $title .= ' ' . htmlspecialchars($matches4[1]);
    
     $statement_select->execute(
       [
