@@ -1,5 +1,24 @@
 <?php
 
+function f_md5($image_url_) {
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $image_url_);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+  $contents = curl_exec($ch);
+  curl_close($ch);
+  
+  $original_image = imagecreatefromstring($contents);
+  $w = imagesx($original_image);
+  $h = imagesy($original_image);
+  $new_image = imagecreatetruecolor(100, 100);
+  imagecopyresampled($new_image, $original_image, 0, 0, 0, 0, 100, 100, $w, $h);
+  imagefilter($new_image, IMG_FILTER_GRAYSCALE);
+  ob_start();
+  imagejpeg($new_image);
+  $data = ob_get_clean();
+  return md5($data);
+}
+
 function f_parse($html_, $host_, $page_) {
  
   $pid = getmypid();
@@ -116,7 +135,8 @@ __HEREDOC__;
     $result = $statement_select->fetch();
     
     if ($result === FALSE) {
-      $thumbnail_hash = md5_file($thumbnail);
+      // $thumbnail_hash = md5_file($thumbnail);
+      $thumbnail_hash = f_md5($thumbnail);
       $statement_insert->execute(
         [
           ':b_thumbnail' => $thumbnail,
