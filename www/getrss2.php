@@ -128,8 +128,7 @@ __HEREDOC__;
     }
     $href = $matches1[1];
     $thumbnail = 'https:' . $matches2[1];
-    // $title = $matches3[1] . ' ' . htmlspecialchars($matches4[1]);
-    $title = $matches3[1] . ' ' . $matches4[1];
+    $title = $matches3[1] . ' ' . htmlentities($matches4[1]);
    
     $statement_select->execute(
       [
