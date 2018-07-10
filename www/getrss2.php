@@ -12,10 +12,12 @@ function f_md5($image_url_) {
   $h = imagesy($original_image);
   $new_image = imagecreatetruecolor(100, 100);
   imagecopyresampled($new_image, $original_image, 0, 0, 0, 0, 100, 100, $w, $h);
+  imagedestroy($original_image);
   imagefilter($new_image, IMG_FILTER_GRAYSCALE);
   ob_start();
   imagejpeg($new_image);
   $data = ob_get_clean();
+  imagedestroy($new_image);
   return md5($data);
 }
 
