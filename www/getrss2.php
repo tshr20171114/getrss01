@@ -10,8 +10,8 @@ function f_md5($image_url_) {
   $original_image = imagecreatefromstring($contents);
   $w = imagesx($original_image);
   $h = imagesy($original_image);
-  $new_image = imagecreatetruecolor(100, 100);
-  imagecopyresampled($new_image, $original_image, 0, 0, 0, 0, 100, 100, $w, $h);
+  $new_image = imagecreatetruecolor(48, 48);
+  imagecopyresampled($new_image, $original_image, 0, 0, 0, 0, 48, 48, $w, $h);
   imagedestroy($original_image);
   imagefilter($new_image, IMG_FILTER_GRAYSCALE);
   ob_start();
