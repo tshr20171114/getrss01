@@ -49,7 +49,8 @@ __HEREDOC__;
 
   $sql = <<< __HEREDOC__
 INSERT INTO t_contents2
-( uri, title, thumbnail, thumbnail_hash, time, page ) VALUES ( :b_uri, :b_title, :b_thumbnail, :b_thumbnail_hash, :b_time, :b_page )
+( uri, title, thumbnail, thumbnail_hash, time, page )
+VALUES ( :b_uri, :b_title, :b_thumbnail, :b_thumbnail_hash, :b_time, :b_page )
 __HEREDOC__;
   $statement = $pdo->prepare($sql);
 
