@@ -68,19 +68,6 @@ __HEREDOC__;
 
   foreach(explode($words['203'], $buf) as $one_record) {
 
-    /*
-    if (strpos($one_record, $words['204']) === false) {
-      continue;
-    }
-
-    if (strpos($one_record, $words['207']) === false) {
-      continue;
-    }
-
-    if (strpos($one_record, $words['206']) !== false) {
-      continue;
-    }
-    */    
     switch (true) {
       case strpos($one_record, $words['204']) === false:
       case strpos($one_record, $words['207']) === false:
@@ -96,29 +83,7 @@ __HEREDOC__;
     if (preg_match('/^([1-4]\d|\d)$/', $time, $matches) == 1) {
       continue;
     }
-    
-    /*
-    if (preg_match('/<a href="(.+?)"/', $one_record, $matches) == 0) {
-      continue;
-    }
-    $href = $matches[1];
-    
-    if (preg_match('/<img src="(.+?)"/', $one_record, $matches) == 0) {
-      continue;
-    }
-    $thumbnail = 'https:' . $matches[1];
-    
-    if (preg_match($words['208'], $one_record, $matches) == 0) {
-      continue;
-    }
-    $title = $matches[1];
-   
-    if (preg_match('/<a .+? title="(.+?)"/', $one_record, $matches) == 0) {
-      continue;
-    }
-    $title .= ' ' . htmlspecialchars($matches[1]);
-    */
-    
+
     switch (true) {
       case preg_match('/<a href="(.+?)"/', $one_record, $matches1) == 0:
       case preg_match('/<img src="(.+?)"/', $one_record, $matches2) == 0:
