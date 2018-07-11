@@ -187,6 +187,9 @@ foreach($urls as $url) {
     CURLOPT_URL => $url,
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => 'gzip',
+    CURLOPT_TCP_FASTOPEN => TRUE,
+    CURLOPT_SSL_FALSESTART => TRUE,
+    CURLOPT_PATH_AS_IS => TRUE,
     CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:57.0) Gecko/20100101 Firefox/61.0'
     ]);
   curl_multi_add_handle($mh, $ch);
