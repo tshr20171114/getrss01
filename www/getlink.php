@@ -20,30 +20,25 @@ error_log("${pid} ${url2}");
 
 $res = file_get_contents($url2);
 
-/*
-$pattern1 = getenv('PATTERN1');
+$url3 = 'none';
+for ($i = 0; $i < 2; $i++) {
+  if ($i == 0) {
+     $pattern = explode(',', getenv('LINK_PATTERN1'));
+  } else {
+     $pattern = explode(',', getenv('LINK_PATTERN2'));
+  }
+  $rc = preg_match('/' . $pattern[0] . '/', $res, $matches);
 
-$rc = preg_match('/' . $pattern1 . '/', $res, $matches);
-*/
+  if ($rc != 1) {
+    continue;
+  }
 
-$pattern2 = explode(',', getenv('LINK_PATTERN2'));
+  error_log("${pid} " . $matches[1]);
 
-error_log("${pid} " . getenv('LINK_PATTERN2'));
-error_log("${pid} " . $pattern2[0]);
-error_log("${pid} " . $pattern2[1]);
-error_log("${pid} " . $pattern2[2]);
+  $url3 = str_replace($pattern[1], $matches[1], $pattern[2]);
 
-$rc = preg_match('/' . $pattern2[0] . '/', $res, $matches);
-
-if ($rc != 1) {
-  exit;
+  error_log("${pid} ${url3}");
 }
-
-error_log("${pid} " . $matches[1]);
-
-$url3 = str_replace($pattern2[1], $matches[1], $pattern2[2]);
-
-error_log("${pid} ${url3}");
 
 header('Content-Type: text/plain');
 echo  $url3;
