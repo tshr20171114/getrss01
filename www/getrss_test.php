@@ -1,5 +1,28 @@
 <?php
 
+function get_contents($url_) {
+  // $pid = getmypid();
+  $ch = curl_init();
+  curl_setopt_array($ch,
+                    [CURLOPT_URL => $url_,
+                     CURLOPT_RETURNTRANSFER => TRUE,
+                     CURLOPT_ENCODING => '',
+                     CURLOPT_CONNECTTIMEOUT => 20,
+                     CURLOPT_FOLLOWLOCATION => TRUE,
+                     CURLOPT_MAXREDIRS => 3,
+                     CURLOPT_FILETIME => TRUE,
+                     // CURLOPT_TCP_FASTOPEN => TRUE,
+                     // CURLOPT_SSL_FALSESTART => TRUE,
+                     CURLOPT_PATH_AS_IS => TRUE,
+                     CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 6.1; rv:56.0) Gecko/20100101 Firefox/61.0',
+                    ]);
+
+  $contents = curl_exec($ch);
+  curl_close($ch);
+  
+  return $contents;
+}
+
 function f_md5($image_url_) {
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $image_url_);
@@ -120,7 +143,7 @@ __HEREDOC__;
     }
     
     //$rc = file_get_contents('https://' . getenv('SELF_FQDN') . '/getlink.php?u=' . $href);
-    $rc = file_get_contents($href);
+    $rc = get_contents($href);
     //error_log("${pid} ${rc}");
     //error_log("${time} ${title} ${href} ${thumbnail} ${page_}");
     error_log("${pid} ${href} ${title}");
