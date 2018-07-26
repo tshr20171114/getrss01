@@ -143,7 +143,8 @@ __HEREDOC__;
 
 $start_time = time();
 
-$max_count = getenv('MAX_COUNT_2');
+// $max_count = getenv('MAX_COUNT_2');
+$max_count = 2;
 $per_count = getenv('PER_COUNT_2');
 
 $pid = getmypid();
