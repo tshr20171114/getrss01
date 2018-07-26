@@ -26,15 +26,15 @@ $pattern1 = getenv('PATTERN1');
 $rc = preg_match('/' . $pattern1 . '/', $res, $matches);
 */
 
-$pattern2 = getenv('PATTERN2');
-$rc = preg_match('/' . $pattern2 . '/', $res, $matches);
+$pattern2[] = explode(',', getenv('LINK_PATTERN2'));
+
+$rc = preg_match('/' . $pattern2[0] . '/', $res, $matches);
 
 if ($rc != 1) {
   exit;
 }
 
-$url3 = $matches[1];
-
+$url3 = str_replace($pattern2[1], $matches[1], $pattern2[2]);
 
 error_log("${pid} ${url3}");
 
