@@ -34,6 +34,8 @@ if ($rc != 1) {
   exit;
 }
 
+error_log("${pid} " . $matches[1]);
+
 $url3 = str_replace($pattern2[1], $matches[1], $pattern2[2]);
 
 error_log("${pid} ${url3}");
