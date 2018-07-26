@@ -28,6 +28,7 @@ $rc = preg_match('/' . $pattern1 . '/', $res, $matches);
 
 $pattern2[] = explode(',', getenv('LINK_PATTERN2'));
 
+error_log("${pid} " . getenv('LINK_PATTERN2'));
 error_log("${pid} " . $pattern2[0]);
 error_log("${pid} " . $pattern2[1]);
 error_log("${pid} " . $pattern2[2]);
