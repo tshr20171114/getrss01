@@ -26,7 +26,7 @@ $pattern1 = getenv('PATTERN1');
 $rc = preg_match('/' . $pattern1 . '/', $res, $matches);
 */
 
-$pattern2[] = explode(',', getenv('LINK_PATTERN2'));
+$pattern2 = explode(',', getenv('LINK_PATTERN2'));
 
 error_log("${pid} " . getenv('LINK_PATTERN2'));
 error_log("${pid} " . $pattern2[0]);
