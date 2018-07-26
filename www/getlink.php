@@ -38,6 +38,8 @@ for ($i = 0; $i < 2; $i++) {
   $url3 = str_replace($pattern[1], $matches[1], $pattern[2]);
 
   error_log("${pid} ${url3}");
+  error_log("${pid} . urlencode($url3));
+  error_log("${pid} . sha1($url3));
 }
 
 header('Content-Type: text/plain');
