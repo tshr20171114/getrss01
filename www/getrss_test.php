@@ -119,6 +119,8 @@ __HEREDOC__;
       $thumbnail_hash = $result['thumbnail_hash'];
     }
     
+    $rc = file_get_contents('https://' . getenv('SELF_FQDN') '/getlink.php?u=' . $href);
+    error_log("${pid} ${rc}");
     //error_log("${time} ${title} ${href} ${thumbnail} ${page_}");
     error_log("${pid} ${href} ${title}");
    
