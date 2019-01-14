@@ -6,7 +6,7 @@ error_log("START ${requesturi} " . date('Y/m/d H:i:s', $time_start));
 $mh = curl_multi_init();
 
 for ($i = 0; $i < 30; $i++) {
-  $url = getenv('URL_010') . ($i + 1);
+  $url = getenv('URL_BASE_010') . ($i + 1);
   error_log($url);
 
   $ch = curl_init();
@@ -39,7 +39,9 @@ while ($active && $rc == CURLM_OK) {
 foreach ($list_ch as $url => $ch) {
   $res = curl_getinfo($ch);
   error_log($res['http_code'] . " ${url}");
-  $list_res[] = curl_multi_getcontent($ch);
+  if ($res['http_code'] == '200') {
+    $list_res[] = curl_multi_getcontent($ch);
+  }
 }
 
 foreach ($list_res as $res) {
@@ -94,8 +96,8 @@ file_put_contents('/tmp/rss.xml', str_replace('__ITEMS__', implode("\r\n", $item
 $rc = filesize('/tmp/rss.xml');
 error_log('file size : ' . $rc);
 
-$ftp_link_id = ftp_connect(getenv('Test01'));
-$rc = ftp_login($ftp_link_id, getenv('Test02'), getenv('Test03'));
+$ftp_link_id = ftp_connect(getenv('FTP_SERVER_FC2'));
+$rc = ftp_login($ftp_link_id, getenv('FTP_ID_FC2'), getenv('FTP_PASSWORD_FC2'));
 
 error_log($rc);
 
